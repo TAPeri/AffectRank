@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Emotion annotation experiment</h1>
+<h2>Institute of Digital Games</h2>
+
+
+<p>The purpose of this study is to evaluate the differences between two methods for emotion annotation.</p>
+
+
+<table>
+<tr>
+<td><p>Both methods require the annotator to quantify the emotional state of a person across two dimensions: <b>arousal</b> and <b>valence</b>.</p>
+
+<ul>
+<li><b>Arousal:</b> refers to the intensity of the emotions the person experiences. 
+<ul>
+<li> High arousal: active, energetic, excited, etc.
+<li> Low arousal: inactive, quiet, peaceful, drowsy, etc.
+</ul>
+
+<li><b>Valence:</b> refers to pleasantness or unpelasantness of the emotions the person experiences. 
+<ul>
+<li> Positive valence: happy, excited, pleased, relaxed, etc.
+<li> Negative valence: sad, depressed, etc.
+</ul>
+</ul>
+
+<p>Human emotions can be placed around this space as shown in the figure. </p>
+<p>If you decide to participate in this study, you will have to annotate 5 videos using two alternative interfaces. Each of the videos last between 3 and 5 minutes and show a person either interacting with a virtual agent of playing a game.</p>
+
+</td><td>
+<canvas id="myCanvas" width="500" height="500"></canvas>
+</td></tr>
+</table>
+<script>
+
+
+		function drawCirc(x,y,color){
+		//var index = 1;
+		context.beginPath();
+      		context.arc(x, y, 20, 0, 2 * Math.PI, false);
+      		context.fillStyle = color;
+      		context.fill();
+     		context.lineWidth = 3;
+     		if (color=='white')
+	      		context.strokeStyle = 'white';
+    
+     		else
+	      		context.strokeStyle = '#003300';
+      		context.stroke();
+	 		context.closePath();		
+		
+	}
+
+
+
+var canvas = document.getElementById('myCanvas');
+var context = canvas.getContext('2d');  
+ var margin =30;
+
+var centerX = canvas.width / 2;
+var centerY = canvas.height / 2;
+
+
+    	context.lineWidth = 2;
+      	context.strokeStyle = 'gray';
+
+		context.beginPath();
+	    context.moveTo(0, canvas.height/2);
+		context.lineTo(canvas.width, canvas.height/2);
+		context.stroke();
+		context.closePath();	
+
+	   	context.beginPath();
+	    context.moveTo(canvas.width/2, 0);
+		context.lineTo(canvas.width/2, canvas.height);
+		context.stroke();
+		context.closePath();	
+	  
+	  	context.beginPath();
+	  	context.arc(centerX, centerY, (canvas.width/2)-margin, 0, 2 * Math.PI, false);
+
+      	//context.rect(margin, margin, canvas.width-(2*margin), canvas.height-(2*margin));
+      	context.stroke();
+	  	context.closePath();
+
+	    context.fillStyle= '#000000';
+		context.font = "bold 30px Verdana";
+	  	context.fillText('+',canvas.width-30, centerY-2);//Valence
+	  	context.fillText('-', 0, centerY-2);//Valence
+	  	context.fillText('+',centerX-25, 20);
+	  	context.fillText('-',centerX-20, canvas.height);
+
+	  	context.font = "normal 15px Verdana";	  	
+	  	context.fillText('(pleasant',canvas.width-70, centerY+20);//Valence
+	  	context.fillText('valence)',canvas.width-65, centerY+35);//Valence
+	  	context.fillText('(unpleasant', 0, centerY+20);//Valence
+	  	context.fillText('valence)', 0, centerY+35);//Valence
+	  	context.fillText('(active arousal)',centerX+2, 17);
+	  	context.fillText('(inactive arousal)',centerX+2, canvas.height-5);	  	
+	  	
+	  	
+
+	  	context.font = "20px Verdana";
+	  	context.fillText('Active',canvas.width-67, 17);
+	  	context.fillText('Pleasant',canvas.width-85, 36);
+
+
+	  	context.fillText('Inactive',0, canvas.height-36);
+	  	context.fillText('Unpleasant',0, canvas.height-17);
+
+
+	  	context.fillText('Inactive',canvas.width-79, canvas.height-36);
+	  	context.fillText('Pleasant',canvas.width-85, canvas.height-17);
+
+
+	  	context.fillText('Active',0, 17);
+	  	context.fillText('Unpleasant',0, 36);
+	  	
+	  	
+	  	context.font = "normal 15px Verdana";	  
+	  		
+	  	context.fillText('frustration',65, centerY-75);//Valence
+	  	context.fillText('anger',125, centerY-155);//Valence
+	  	context.fillText('boredom',105, centerY+145);//Valence
+	  	context.fillText('excitement',centerX+45, centerY-165);//Valence
+	  	context.fillText('relaxation',centerX+50, centerY+145);//Valence
+	  	
+	  	drawCirc(40, centerY-80,'green');
+	  	drawCirc(100, centerY-160,'green');
+	  	
+	  	drawCirc(80, centerY+140,'green');
+	  	drawCirc(centerX+150, centerY+140,'green');
+	  	drawCirc(centerX+150, centerY-170,'green');
+
+	  	
+	  	
+	  	
+	  	
+	  	
+
+</script>
+	  	
+
+
+
+<p>The experiment can be paused and resumed later by introducing the same username. </p>
+
+
+
+<form name="usernameform" method="post" action="panel.php" >
+
+       <label>Username</label>
+       <input type="text" size="50" name="username" id = "username"> <p style="font-size: 11;">    
+       <center><input  name="submit" type="submit" value="Start/Continue annotation"></center>
+
+
+</form>
+
+
+
+
+</body>
+</html>
